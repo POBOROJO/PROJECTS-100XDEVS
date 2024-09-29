@@ -1,1 +1,3 @@
-This is the class work of yt practice in tailwind
+# 100xDevs
+
+This is the repo for 100xdevs class practice part
