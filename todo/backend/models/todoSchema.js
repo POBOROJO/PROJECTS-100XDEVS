@@ -9,6 +9,9 @@ const todoSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  completed: {
+    type: Boolean,
+  },
 });
 
-export default mongoose.Model("Todo", todoSchema);
+export default mongoose.model("Todo", todoSchema);
