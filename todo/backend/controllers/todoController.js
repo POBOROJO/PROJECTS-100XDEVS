@@ -7,7 +7,7 @@ export const createTodo = async (req, res) => {
     const parsedPayload = CreateTodoZod.safeParse(createPayload);
 
     if (!parsedPayload.success) {
-      res.status(400).json({ message: "You sent the wrong data" });
+      res.status(411).json({ message: "You sent the wrong data" });
       return;
     }
     await Todo.create({
@@ -37,3 +37,20 @@ export const getTodo = async (req, res) => {
     res.status(500).json({ message: "Something went wrong" });
   }
 };
+
+export const deleteTodo = async(req,res)=>{
+  try {
+
+  } catch (error) {
+    console.error(error.message);
+    // handle error
+  }
+
+}
+
+export const updateTodo = async(req,res)=>{
+  try
+    const updatePayload = req.body;
+    const parsed
+  }
+}
