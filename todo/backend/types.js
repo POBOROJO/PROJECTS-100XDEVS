@@ -1,5 +1,4 @@
 import { z } from "zod";
-import todoSchema from "./models/todoSchema";
 
 export const CreateTodoZod = z.object({
   title: z.string.min(3, "Title name is required"),

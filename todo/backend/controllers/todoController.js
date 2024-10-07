@@ -19,7 +19,21 @@ export const createTodo = async (req, res) => {
     res.json({
       message: "Todo created successfully",
     });
-  } catch (err) {
+  } catch (error) {
+    console.error("Error in createTodo", error);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
+export const getTodo = async (req, res) => {
+  try {
+    const allTodos = await Todo.find({});
+    res.json({
+      message: "Todo fetched successfully",
+      allTodos,
+    });
+  } catch (error) {
+    console.error("Error in getTodo", error);
     res.status(500).json({ message: "Something went wrong" });
   }
 };
