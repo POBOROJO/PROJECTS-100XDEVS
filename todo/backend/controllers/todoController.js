@@ -73,8 +73,44 @@ export const updateTodo = async (req, res) => {
       });
       return;
     }
+    await Todo.update(
+      {
+        _id: req.body.id,
+      },
+      {
+        title: parsedPayload.title,
+        description: parsedPayload.description,
+        completed: parsedPayload.completed,
+      },
+    );
   } catch (error) {
     console.error("Error in updating the todos", error);
+    res.status(500).json({
+      message: "Something went wrong",
+    });
+  }
+};
+
+export const completeTodo = async (req, res) => {
+  try {
+    const updatePayload = req.body;
+    const parsedPayload = UpdateTodoZod.safeParse(updatePayload);
+    if (!parsedPayload.success) {
+      res.status(411).json({
+        msg: "You sent the wrong inputs",
+      });
+      return;
+    }
+    const updatedTodo = await Todo.update(
+      {
+        _id: req.body.id,
+      },
+      {
+        completed: parsedPayload.completed,
+      },
+    );
+  } catch (error) {
+    console.error("Error in completing the todos", error);
     res.status(500).json({
       message: "Something went wrong",
     });
