@@ -16,18 +16,18 @@ export const Signup = async (req, res) => {
 
   const { success } = signUpValidation.safeParse(body);
   if (!success) {
-    return res.json({
-      message: "Email already taken / Incorrect inputs",
+    return res.status(411).json({
+      message: "Incorrect inputs",
     });
   }
 
   const user = User.findOne({
-    username: body.username,
+    email: body.email,
   });
 
   if (user._id) {
-    return res.json({
-      message: "Email already taken / Incorrect inputs",
+    return res.status(411).json({
+      message: "Email already taken ",
     });
   }
 
@@ -39,7 +39,7 @@ export const Signup = async (req, res) => {
     JWT_SECRET
   );
 
-  res.json({
+  res.status(200).json({
     message: "User created successfully",
     token: token,
   });
